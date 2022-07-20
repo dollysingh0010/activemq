@@ -2,9 +2,7 @@ openapi: 3.0.0
 info:
   title: test1
   contact: {}
-swaggerhub
-  version: "1.0"
-
+  version: 1.0.0
 servers:
 - url: https://enterprise-messaging-pubsub.cfapps.eu12.hana.ondemand.com/messagingrest/v1/topics/z%2Fsap.cgt%2F01%2Finbound%2Fevents%2Freceiver
 security:
