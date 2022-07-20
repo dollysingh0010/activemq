@@ -1,0 +1,202 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "defaultTitle",
+    "description" : "defaultDescription",
+    "version" : "0.1"
+  },
+  "servers" : [ {
+    "url" : "https://enterprise-messaging-pubsub.cfapps.eu12.hana.ondemand.com"
+  } ],
+  "paths" : {
+    "/messagingrest/v1/topics/z/sap.cgt/01/inbound/events/receiver/messages" : {
+      "post" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "parameters" : [ {
+          "name" : "x-qos",
+          "in" : "header",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "0"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/receiver_messages_body"
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\r\n    \"header\": {\r\n        \"eventVersion\": \"1.0.0\",\r\n        \"eventType\": \"sap/cgt/order/treatment_order/create\",\r\n        \"eventSubdomainId\": \"cgt-r1-dev-sub2-eu12\",\r\n        \"eventSourceSystemId\": \"7f52de61-63cb-42e0-8937-dbed7e705829\",\r\n        \"requestedDateTime\": \"2022-06-02T12:25:29.983Z\",\r\n        \"eventId\": \"{{$guid}}\",\r\n        \"correlationId\": \"{{$guid}}\"\r\n    },\r\n    \"data\": {\r\n        \"coiId\": \"RG4734\",\r\n        \"referenceOrder\": \"RG001\",\r\n        \"treatmentCenterId\": \"ORG001\",\r\n        \"therapyId\": \"THERAPY001\",\r\n        \"clinicalTrailSubjectId\": \"UYT843\",\r\n        \"TreatmentOrderDate\": [\r\n            {\r\n                \"dateId\": \"1\",\r\n                \"dateTimeStamp\": \"2022-01-22T10:22:48.202Z\"\r\n            },\r\n            {\r\n                \"dateId\": \"2\",\r\n                \"dateTimeStamp\": \"2022-08-24T14:15:22Z\"\r\n            },\r\n            {\r\n                \"dateId\": \"3\",\r\n                \"dateTimeStamp\": \"2022-08-24T14:15:22Z\"\r\n            }\r\n        ],\r\n        \"TreatmentOrderText\": [\r\n            {\r\n                \"textId\": \"1\",\r\n                \"messageText\": \"Cancer specimen\",\r\n                \"language\": \"en\"\r\n            },\r\n            {\r\n                \"textId\": \"2\",\r\n                \"messageText\": \"TB specimen\",\r\n                \"language\": \"en\"\r\n            }\r\n        ],\r\n        \"TreatmentOrderPartner\": [\r\n            {\r\n                \"partnerRoleId\": \"1\",\r\n                \"partnerId\": \"1\",\r\n                \"partner\": \"Roche Corp\"\r\n            }\r\n        ],\r\n        \"patientID\": \"W4XNCVSAFB\"\r\n    }\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "204" : {
+            "description" : "Auto generated using Swagger Inspector"
+          }
+        },
+        "servers" : [ {
+          "url" : "https://enterprise-messaging-pubsub.cfapps.eu12.hana.ondemand.com"
+        } ]
+      },
+      "servers" : [ {
+        "url" : "https://enterprise-messaging-pubsub.cfapps.eu12.hana.ondemand.com"
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Schema" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_data_TreatmentOrderPartner" : {
+        "type" : "object",
+        "properties" : {
+          "partner" : {
+            "type" : "string"
+          },
+          "partnerRoleId" : {
+            "type" : "string"
+          },
+          "partnerId" : {
+            "type" : "string"
+          }
+        },
+        "example" : null
+      },
+      "messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_data_TreatmentOrderDate" : {
+        "type" : "object",
+        "properties" : {
+          "dateId" : {
+            "type" : "string"
+          },
+          "dateTimeStamp" : {
+            "type" : "string"
+          }
+        },
+        "example" : null
+      },
+      "messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_data_TreatmentOrderText" : {
+        "type" : "object",
+        "properties" : {
+          "textId" : {
+            "type" : "string"
+          },
+          "messageText" : {
+            "type" : "string"
+          },
+          "language" : {
+            "type" : "string"
+          }
+        },
+        "example" : null
+      },
+      "messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_data" : {
+        "type" : "object",
+        "properties" : {
+          "therapyId" : {
+            "type" : "string"
+          },
+          "clinicalTrailSubjectId" : {
+            "type" : "string"
+          },
+          "TreatmentOrderPartner" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_data_TreatmentOrderPartner"
+            }
+          },
+          "TreatmentOrderDate" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_data_TreatmentOrderDate"
+            }
+          },
+          "patientID" : {
+            "type" : "string"
+          },
+          "treatmentCenterId" : {
+            "type" : "string"
+          },
+          "TreatmentOrderText" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_data_TreatmentOrderText"
+            }
+          },
+          "referenceOrder" : {
+            "type" : "string"
+          },
+          "coiId" : {
+            "type" : "string"
+          }
+        },
+        "example" : null
+      },
+      "messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_header" : {
+        "type" : "object",
+        "properties" : {
+          "eventSourceSystemId" : {
+            "type" : "string"
+          },
+          "eventId" : {
+            "type" : "string"
+          },
+          "eventSubdomainId" : {
+            "type" : "string"
+          },
+          "eventVersion" : {
+            "type" : "string"
+          },
+          "correlationId" : {
+            "type" : "string"
+          },
+          "eventType" : {
+            "type" : "string"
+          },
+          "requestedDateTime" : {
+            "type" : "string"
+          }
+        },
+        "example" : null
+      },
+      "receiver_messages_body" : {
+        "type" : "object",
+        "properties" : {
+          "data" : {
+            "$ref" : "#/components/schemas/messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_data"
+          },
+          "header" : {
+            "$ref" : "#/components/schemas/messagingrestv1topicszsap.cgt01inboundeventsreceivermessages_header"
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "oauth2" : {
+        "type" : "oauth2",
+        "flows" : {
+          "implicit" : {
+            "authorizationUrl" : "http://yourauthurl.com",
+            "scopes" : {
+              "scope_name" : "Enter your scopes here"
+            }
+          }
+        }
+      }
+    }
+  }
+}
