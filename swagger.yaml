@@ -1,0 +1,277 @@
+openapi: 3.0.0
+info:
+  title: test1
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://enterprise-messaging-pubsub.cfapps.eu12.hana.ondemand.com/messagingrest/v1/topics/z%2Fsap.cgt%2F01%2Finbound%2Fevents%2Freceiver
+  variables: {}
+paths:
+  /messages:
+    post:
+      tags:
+      - Misc
+      summary: 3a_DEV_sub2
+      operationId: 3a_DEV_sub2
+      parameters:
+      - name: x-qos
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 0
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/3a_DEV_sub2_Request'
+            example:
+              header:
+                eventVersion: 1.0.0
+                eventType: sap/cgt/order/treatment_order/create
+                eventSubdomainId: cgt-r1-dev-sub2-eu12
+                eventSourceSystemId: 7f52de61-63cb-42e0-8937-dbed7e705829
+                requestedDateTime: 2022-06-02T12:25:29.983Z
+                eventId: '{{$guid}}'
+                correlationId: '{{$guid}}'
+              data:
+                coiId: RG4734
+                referenceOrder: RG001
+                treatmentCenterId: ORG001
+                therapyId: THERAPY001
+                clinicalTrailSubjectId: UYT843
+                TreatmentOrderDate:
+                - dateId: '1'
+                  dateTimeStamp: 2022-01-22T10:22:48.202Z
+                - dateId: '2'
+                  dateTimeStamp: 2022-08-24T14:15:22Z
+                - dateId: '3'
+                  dateTimeStamp: 2022-08-24T14:15:22Z
+                TreatmentOrderText:
+                - textId: '1'
+                  messageText: Cancer specimen
+                  language: en
+                - textId: '2'
+                  messageText: TB specimen
+                  language: en
+                TreatmentOrderPartner:
+                - partnerRoleId: '1'
+                  partnerId: '1'
+                  partner: Roche Corp
+                patientID: W4XNCVSAFB
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    3a_DEV_sub2_Request:
+      title: 3a_DEV_sub2_Request
+      required:
+      - header
+      - data
+      type: object
+      properties:
+        header:
+          $ref: '#/components/schemas/Header'
+        data:
+          $ref: '#/components/schemas/Data'
+      example:
+        header:
+          eventVersion: 1.0.0
+          eventType: sap/cgt/order/treatment_order/create
+          eventSubdomainId: cgt-r1-dev-sub2-eu12
+          eventSourceSystemId: 7f52de61-63cb-42e0-8937-dbed7e705829
+          requestedDateTime: 2022-06-02T12:25:29.983Z
+          eventId: '{{$guid}}'
+          correlationId: '{{$guid}}'
+        data:
+          coiId: RG4734
+          referenceOrder: RG001
+          treatmentCenterId: ORG001
+          therapyId: THERAPY001
+          clinicalTrailSubjectId: UYT843
+          TreatmentOrderDate:
+          - dateId: '1'
+            dateTimeStamp: 2022-01-22T10:22:48.202Z
+          - dateId: '2'
+            dateTimeStamp: 2022-08-24T14:15:22Z
+          - dateId: '3'
+            dateTimeStamp: 2022-08-24T14:15:22Z
+          TreatmentOrderText:
+          - textId: '1'
+            messageText: Cancer specimen
+            language: en
+          - textId: '2'
+            messageText: TB specimen
+            language: en
+          TreatmentOrderPartner:
+          - partnerRoleId: '1'
+            partnerId: '1'
+            partner: Roche Corp
+          patientID: W4XNCVSAFB
+    Header:
+      title: Header
+      required:
+      - eventVersion
+      - eventType
+      - eventSubdomainId
+      - eventSourceSystemId
+      - requestedDateTime
+      - eventId
+      - correlationId
+      type: object
+      properties:
+        eventVersion:
+          type: string
+        eventType:
+          type: string
+        eventSubdomainId:
+          type: string
+        eventSourceSystemId:
+          type: string
+        requestedDateTime:
+          type: string
+        eventId:
+          type: string
+        correlationId:
+          type: string
+      example:
+        eventVersion: 1.0.0
+        eventType: sap/cgt/order/treatment_order/create
+        eventSubdomainId: cgt-r1-dev-sub2-eu12
+        eventSourceSystemId: 7f52de61-63cb-42e0-8937-dbed7e705829
+        requestedDateTime: 2022-06-02T12:25:29.983Z
+        eventId: '{{$guid}}'
+        correlationId: '{{$guid}}'
+    Data:
+      title: Data
+      required:
+      - coiId
+      - referenceOrder
+      - treatmentCenterId
+      - therapyId
+      - clinicalTrailSubjectId
+      - TreatmentOrderDate
+      - TreatmentOrderText
+      - TreatmentOrderPartner
+      - patientID
+      type: object
+      properties:
+        coiId:
+          type: string
+        referenceOrder:
+          type: string
+        treatmentCenterId:
+          type: string
+        therapyId:
+          type: string
+        clinicalTrailSubjectId:
+          type: string
+        TreatmentOrderDate:
+          type: array
+          items:
+            $ref: '#/components/schemas/TreatmentOrderDate'
+          description: ''
+        TreatmentOrderText:
+          type: array
+          items:
+            $ref: '#/components/schemas/TreatmentOrderText'
+          description: ''
+        TreatmentOrderPartner:
+          type: array
+          items:
+            $ref: '#/components/schemas/TreatmentOrderPartner'
+          description: ''
+        patientID:
+          type: string
+      example:
+        coiId: RG4734
+        referenceOrder: RG001
+        treatmentCenterId: ORG001
+        therapyId: THERAPY001
+        clinicalTrailSubjectId: UYT843
+        TreatmentOrderDate:
+        - dateId: '1'
+          dateTimeStamp: 2022-01-22T10:22:48.202Z
+        - dateId: '2'
+          dateTimeStamp: 2022-08-24T14:15:22Z
+        - dateId: '3'
+          dateTimeStamp: 2022-08-24T14:15:22Z
+        TreatmentOrderText:
+        - textId: '1'
+          messageText: Cancer specimen
+          language: en
+        - textId: '2'
+          messageText: TB specimen
+          language: en
+        TreatmentOrderPartner:
+        - partnerRoleId: '1'
+          partnerId: '1'
+          partner: Roche Corp
+        patientID: W4XNCVSAFB
+    TreatmentOrderDate:
+      title: TreatmentOrderDate
+      required:
+      - dateId
+      - dateTimeStamp
+      type: object
+      properties:
+        dateId:
+          type: string
+        dateTimeStamp:
+          type: string
+      example:
+        dateId: '1'
+        dateTimeStamp: 2022-01-22T10:22:48.202Z
+    TreatmentOrderText:
+      title: TreatmentOrderText
+      required:
+      - textId
+      - messageText
+      - language
+      type: object
+      properties:
+        textId:
+          type: string
+        messageText:
+          type: string
+        language:
+          type: string
+      example:
+        textId: '1'
+        messageText: Cancer specimen
+        language: en
+    TreatmentOrderPartner:
+      title: TreatmentOrderPartner
+      required:
+      - partnerRoleId
+      - partnerId
+      - partner
+      type: object
+      properties:
+        partnerRoleId:
+          type: string
+        partnerId:
+          type: string
+        partner:
+          type: string
+      example:
+        partnerRoleId: '1'
+        partnerId: '1'
+        partner: Roche Corp
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Misc
+  description: ''
